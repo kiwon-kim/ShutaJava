@@ -14,3 +14,22 @@ class Card(val no: Int, val isKwang: Boolean)
 //        this.isKwang = isKwang
 //    }
 //}
+/*
+public class Card {
+    private int no;
+    private boolean kwang;
+
+    public Card(int no, boolean kwang) {
+        this.no = no;
+        this.kwang = kwang;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public boolean isKwang() {
+        return kwang;
+    }
+}
+*/
