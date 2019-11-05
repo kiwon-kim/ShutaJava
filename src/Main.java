@@ -1,14 +1,17 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Main {
 
+    private static CardScoreCalculator calculator;
+
     public static void main(String[] args) {
+        calculator = new StupidCardScoreCalculator();
+
         // 선수 입장
         ArrayList<Player> players = new ArrayList<Player>(Constant.PLAYER_COUNT);
         for (int i = 0; i < Constant.PLAYER_COUNT; i++)
             players.add(new Player(i + 1));
-
-        int round = 0;
 
         while (true) {
             // 오링된 플레이어는제거
@@ -55,7 +58,7 @@ public class Main {
 
     private static Player findWinner(ArrayList<Player> players) {
         for (Player player : players)
-            player.calculateCardScore();
+            player.calculateCardScore(calculator);
 
         Player winner =  players.get(0);
 

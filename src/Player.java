@@ -38,17 +38,17 @@ public class Player {
         cards.add(card);
     }
 
-    public void calculateCardScore() {
-        if (cards.get(0).isKwang() && cards.get(1).isKwang())
-            cardScore = 200;
-        else if (cards.get(0).getNo() == cards.get(1).getNo())
-            cardScore = cards.get(0).getNo() * 10;
-        else
-            cardScore = (cards.get(0).getNo() + cards.get(1).getNo()) % 10;
+    public void calculateCardScore(CardScoreCalculator calculator) {
+        cardScore = calculator.calculate(cards);
     }
 
     public void prepareRound(){
         cards.clear();
         cardScore = 0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Player %d has %d won, (%s, %s) = %d", id, money, cards.get(0), cards.get(1), cardScore);
     }
 }
