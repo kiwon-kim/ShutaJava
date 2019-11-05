@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class Main {
 
@@ -19,8 +18,9 @@ public class Main {
                 break;
 
             // 라운드 준비
-            Dealer dealer = new Dealer();
-            dealer.prepareRound();
+            Dealer.getInstance().prepareRound();
+            for (Player player : players)
+                player.prepareRound();
 
             // 학교를 간다
             int groundMoney = 0;
@@ -32,7 +32,7 @@ public class Main {
             // 카드를 나눠준다.
             for (Player player : players) {
                 for (int i = 0; i < 2; i++) {
-                    Card card = dealer.drawCard();
+                    Card card = Dealer.getInstance().drawCard();
                     player.takeCard(card);
                 }
             }
@@ -54,6 +54,15 @@ public class Main {
     }
 
     private static Player findWinner(ArrayList<Player> players) {
-        return null;
+        for (Player player : players)
+            player.calculateCardScore();
+
+        Player winner =  players.get(0);
+
+        for (Player player : players)
+            if (player.getCardScore() > winner.getCardScore())
+                winner = player;
+
+        return winner;
     }
 }
