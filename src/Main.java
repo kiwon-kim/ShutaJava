@@ -14,7 +14,7 @@ public class Main {
             players.add(new Player(i + 1));
 
         while (true) {
-            // 오링된 플레이어는제거
+            // 올인된 플레이어는제거
             players.removeIf(x -> x.getMoney() == 0);
 
             if (players.size() == 1)
